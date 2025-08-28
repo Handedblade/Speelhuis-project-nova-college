@@ -9,7 +9,7 @@ class Database
 
     public $connection;
 
-    public function start()
+    public function start() //connects to the database and gives an error if unsuccesfull
     {
         $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->database);
 
@@ -18,7 +18,7 @@ class Database
         }
     }
 
-    public function close()
+    public function close() //disconnects from the database
     {
         $this->connection->close();
     }
