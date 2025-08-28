@@ -57,7 +57,6 @@ class User
         setcookie("speelhuys-session-key", $key, strtotime("+1 month"), "/");
     }
 
-    public function find
 }
 
 ?>
