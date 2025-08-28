@@ -20,7 +20,7 @@ class Brand
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $brand = new Brand;
+                $brand = new Brand();
                 $brand->id = $row['brand_id'];
                 $brand->name = $row['brand_name'];
                 $brand->logo = $row['brand_logo'];
