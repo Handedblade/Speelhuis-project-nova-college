@@ -6,7 +6,7 @@ class Brand
     public string $name;
     public string $logo;
 
-    public static function findById($id)
+    public static function findById($id) //finds a product's brand and returns it if found
     {
         $conn = new Database();
         $conn->start();
