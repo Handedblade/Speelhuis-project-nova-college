@@ -35,6 +35,10 @@ class User
                 $user->role = $row['user_role'];
             }
         }
+
+        $conn->close();
+
+        return $user;
     }
 }
 
