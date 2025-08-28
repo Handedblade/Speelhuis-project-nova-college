@@ -78,6 +78,101 @@ class Set
 
         return $sets;
     }
+
+    public function update() //updates an existing set
+    {
+        $conn = new Database();
+        $conn->start();
+
+        $id = mysqli_real_escape_string($conn->connection, $this->id);
+        $name = mysqli_real_escape_string($conn->connection, $this->name);
+        $description = mysqli_real_escape_string($conn->connection, $this->description);
+        $brandId = mysqli_real_escape_string($conn->connection, $this->brandId);
+        $themeId = mysqli_real_escape_string($conn->connection, $this->themeId);
+        $image = mysqli_real_escape_string($conn->connection, $this->image);
+        $price = mysqli_real_escape_string($conn->connection, $this->price);
+        $age = mysqli_real_escape_string($conn->connection, $this->age);
+        $pieces = mysqli_real_escape_string($conn->connection, $this->pieces);
+        $stock = mysqli_real_escape_string($conn->connection, $this->stock);
+
+        $sql = "
+        UPDATE
+            sets
+        SET
+            set_name = '" . $name . "',
+            set_description = '" . $description . "',
+            set_brandId = '" . $brandId . "',
+            set_themeId = '" . $themeId . "',
+            set_image = '" . $image . "',
+            set_price = '" . $price . "',
+            set_age = '" . $age . "',
+            set_pieces = '" . $pieces . "',
+            set_stock = '" . $stock . "',
+        WHERE
+            set_id = " . $id . "
+        ";
+
+        $conn->connection->query($sql);
+
+        $conn->close();
+    }
+
+    public function insert() //inserts a new set
+    {
+        $conn = new Database();
+        $conn->start();
+
+        $name = mysqli_real_escape_string($conn->connection, $this->name);
+        $description = mysqli_real_escape_string($conn->connection, $this->description);
+        $brandId = mysqli_real_escape_string($conn->connection, $this->brandId);
+        $themeId = mysqli_real_escape_string($conn->connection, $this->themeId);
+        $image = mysqli_real_escape_string($conn->connection, $this->image);
+        $price = mysqli_real_escape_string($conn->connection, $this->price);
+        $age = mysqli_real_escape_string($conn->connection, $this->age);
+        $pieces = mysqli_real_escape_string($conn->connection, $this->pieces);
+        $stock = mysqli_real_escape_string($conn->connection, $this->stock);
+
+        $sql = "
+        INSERT INTO
+            sets (
+                set_name,
+                set_description,
+                set_brandId,
+                set_themeId,
+                set_image,
+                set_price,
+                set_age,
+                set_pieces,
+                set_stock
+        ) VALUES (
+            '" . $name . "',
+            '" . $description . "',
+            '" . $brandId . "',
+            '" . $themeId . "',
+            '" . $image . "',
+            '" . $price . "',
+            '" . $age . "',
+            '" . $pieces . "',
+            '" . $stock . "'
+        )";
+
+        $conn->connection->query($sql);
+
+        $conn->close();
+    }
+
+    public function delete() //deletes an existing set
+    {
+        $conn = new Database();
+        $conn->start();
+
+        $id = mysqli_real_escape_string($conn->connection, $this->id);
+
+        $sql = "DELETE FROM sets WHERE set_id = $id";
+        $conn->connection->query($sql);
+
+        $conn->close();
+    }
 }
 
 ?>
