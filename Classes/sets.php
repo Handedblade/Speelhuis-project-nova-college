@@ -1,0 +1,83 @@
+<?php
+
+class Set
+{
+    public int $id;
+    public string $name;
+    public string $description;
+    public int $brandId;
+    public int $themeId;
+    public string $image;
+    public float $price;
+    public int $age;
+    public int $pieces;
+    public int $stock;
+
+    public static function findById($id) //finds a product and returns it if found
+    {
+        $conn = new Database();
+        $conn->start();
+
+        $id = mysqli_real_escape_string($conn->connection, $id);
+
+        $sql = "SELECT * FROM sets WHERE set_id = '$id'";
+        $result = $conn->connection->query($sql);
+
+        $set = null;
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $set = new Set();
+                $set->id = $row['set_id'];
+                $set->name = $row['set_name'];
+                $set->description = $row['set_description'];
+                $set->brandId = $row['set_brand_id'];
+                $set->themeId = $row['set_theme_id'];
+                $set->image = $row['set_image'];
+                $set->price = $row['set_price'];
+                $set->age = $row['set_age'];
+                $set->pieces = $row['set_pieces'];
+                $set->stock = $row['set_stock'];
+            }
+        }
+
+        $conn->close();
+
+        return $set;
+    }
+
+    public static function findAll() //returns every product in the form of an array
+    {
+        $conn = new Database();
+        $conn->start();
+
+        $sql = "SELECT * FROM sets";
+        $result = $conn->connection->query($sql);
+
+        $sets = [];
+
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $set = new Set();
+                $set->id = $row['set_id'];
+                $set->name = $row['set_name'];
+                $set->description = $row['set_description'];
+                $set->brandId = $row['set_brand_id'];
+                $set->themeId = $row['set_theme_id'];
+                $set->image = $row['set_image'];
+                $set->price = $row['set_price'];
+                $set->age = $row['set_age'];
+                $set->pieces = $row['set_pieces'];
+                $set->stock = $row['set_stock'];
+                $sets[] = $set;
+            }
+        }
+
+        $conn->close();
+
+        return $sets;
+    }
+}
+
+?>
