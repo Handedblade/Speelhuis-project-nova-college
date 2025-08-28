@@ -40,6 +40,24 @@ class User
 
         return $user;
     }
+
+    public function login() //logs the current user in by making a new session then placing the session key inside a cookie
+    {
+        include "session.php";
+
+        $key = md5(uniqid(rand(), true));
+
+        $session = new Session();
+        $session->userId = $this->id;
+        $session->key = $key;
+        $session->start = date("Y-m-d H:i:s");
+        $session->end = date("Y-m-d H:i:s", strtotime("+1 month"));
+        $session->insert();
+
+        setcookie("speelhuys-session-key", $key, strtotime("+1 month"), "/");
+    }
+
+    public function find
 }
 
 ?>
