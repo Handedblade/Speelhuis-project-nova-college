@@ -10,40 +10,14 @@ include "Classes/themes.php";
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="css/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>speel hyuis</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        /* Navbar styles */
-        .navbar {
-            background-color: #000000;
-            overflow: hidden;
-        }
-        .navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        /* Main content styles */
-        .content {
-            padding: 20px;
-        }
-    </style>
 </head>
+
 <body>
 
     <!-- Navigation bar -->
@@ -51,7 +25,7 @@ include "Classes/themes.php";
         <a href="#home">Speel huis</a>
         <a href="#products">Products</a>
         <a href="#contact">Contact</a>
-        <a href="login"> Login </a
+        <a href="login"> Login </a>
     </div>
 
     <!-- Main content -->
@@ -71,5 +45,5 @@ include "Classes/themes.php";
     </div>
 
 </body>
-</html>
 
+</html>
