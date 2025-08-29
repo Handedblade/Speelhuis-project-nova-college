@@ -21,9 +21,9 @@ include "Classes/themes.php";
     <!-- Navigation bar -->
     <nav class="navbar" aria-label="Main navigation">
         <a href="#home">Speel Huis</a>
-        <a href="#products">Products</a>
+        <a href="products.php">Products</a>
         <a href="#contact">Contact</a>
-        <a href="login">Login</a>
+        <a href="Admin/index.php">Login</a>
     </nav>
 
     <main>
