@@ -9,3 +9,11 @@ include "../Classes/themes.php";
 include "../Classes/sets.php";
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Admin Owner Page</title>
+</head>
+</html>
