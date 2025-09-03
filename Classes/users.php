@@ -43,7 +43,7 @@ class User
 
     public function login() //logs the current user in by making a new session then placing the session key inside a cookie
     {
-        include "session.php";
+        include "sessions.php";
 
         $key = md5(uniqid(rand(), true));
 
