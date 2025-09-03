@@ -4,19 +4,15 @@
 include "../Classes/database.php";
 include "../Classes/users.php";
 include "../Classes/sessions.php";
-
 ?>
-
-
-<!DOCTYPE html> 
-<html lang="nl">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/styles.css">
     <title>Login</title>
 </head>
 <body>
-    <form action="create.php" method="POST">
+    <form action="index.php" method="POST">
         Username: <input type="text" name="username" required><br>
         Password: <input type="password" name="password" required><br>
         <input type="submit" value="Login">
