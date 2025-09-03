@@ -154,7 +154,7 @@ class Set
             '" . $age . "',
             '" . $pieces . "',
             '" . $stock . "'
-        )";
+        )"; // Kan je hier een uitleg geven Ryan??
 
         $conn->connection->query($sql);
 
