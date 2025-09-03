@@ -8,7 +8,7 @@ include "../Classes/sessions.php";
 <!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Login</title>
 </head>
 <body>
