@@ -7,16 +7,16 @@ include "../Classes/users.php";
 <!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/index.css">
     <title>Login</title>
 </head>
 <body>
     <!-- Navigation bar -->
     <nav class="navbar" aria-label="Main navigation">
-        <a href="#home">Speel Huis</a>
-        <a href="products.php">Products</a>
-        <a href="#contact">Contact</a>
-        <a href="Admin/index.php">Login</a>
+        <a href="../index.php">Speel Huis</a>
+        <a href="../products.php">Products</a>
+        <a href="../contact.php">Contact</a>
+        <a href="index.php">Login</a>
     </nav>
 
     <form action="index.php" method="POST">
