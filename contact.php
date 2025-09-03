@@ -18,7 +18,7 @@ include "Classes/themes.php";
 <body>
 
     <nav class="navbar" aria-label="Main navigation">
-        <a href="#home">Speel Huis</a>
+        <a href="index.php">Speel Huis</a>
         <a href="products.php">Products</a>
         <a href="contact.php">Contact</a>
         <a href="Admin/index.php">Login</a>
