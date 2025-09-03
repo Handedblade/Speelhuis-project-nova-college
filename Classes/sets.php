@@ -64,12 +64,14 @@ class Set
                 $set->name = $row['set_name'];
                 $set->description = $row['set_description'];
                 $set->brandId = $row['set_brand_id'];
-                $set->themeId = $row['set_theme_id'];
                 $set->image = $row['set_image'];
                 $set->price = $row['set_price'];
                 $set->age = $row['set_age'];
                 $set->pieces = $row['set_pieces'];
                 $set->stock = $row['set_stock'];
+                if ($row['set_theme_id']) {
+                    $set->themeId = $row['set_theme_id'];
+                }
                 $sets[] = $set;
             }
         }
@@ -155,6 +157,7 @@ class Set
             '" . $pieces . "',
             '" . $stock . "'
         )"; // Kan je hier een uitleg geven Ryan??
+        //dit is gewoon de insert functie die we in eerdere projecten hebben gebruikt om een nieuw object toe te voegen aan de database
 
         $conn->connection->query($sql);
 
