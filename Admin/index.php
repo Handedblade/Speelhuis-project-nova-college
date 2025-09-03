@@ -11,6 +11,14 @@ include "../Classes/users.php";
     <title>Login</title>
 </head>
 <body>
+    <!-- Navigation bar -->
+    <nav class="navbar" aria-label="Main navigation">
+        <a href="#home">Speel Huis</a>
+        <a href="products.php">Products</a>
+        <a href="#contact">Contact</a>
+        <a href="Admin/index.php">Login</a>
+    </nav>
+
     <form action="index.php" method="POST">
         Username: <input type="text" name="username" required><br>
         Password: <input type="password" name="password" required><br>
