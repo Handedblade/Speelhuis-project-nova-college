@@ -33,13 +33,13 @@ include "Classes/themes.php";
         </section>
 
         <section class="content" id="products">
-            <h2>Our Products</h2>
-            <p>Here are some of the great products we offer.</p>
+            <h2>About our Speel Huys</h2>
+            <p>Speel huys is the first project we have gotten where we have to work in a group. The goal of this project is to boost our teamwork capabilities and learn how to use github with multiple people. For this project we had to make an website with a catalog of lego / dulpo. This catalog needs 2 features. It needs a filter and a button where if you press on a product you get send to different page with more details about this said product.</p>
         </section>
 
         <section class="content" id="contact">
-            <h2>Contact Us</h2>
-            <p>You can reach us via email at contact@example.com</p>
+            <h2>If you have any questions you can check the contact page</h2>
+            <p>You can find our email, phone number and our main building location.</p>
         </section>
     </main>
 
