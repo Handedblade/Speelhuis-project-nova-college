@@ -32,12 +32,15 @@ class Set
                 $set->name = $row['set_name'];
                 $set->description = $row['set_description'];
                 $set->brandId = $row['set_brand_id'];
-                $set->themeId = $row['set_theme_id'];
                 $set->image = $row['set_image'];
                 $set->price = $row['set_price'];
                 $set->age = $row['set_age'];
                 $set->pieces = $row['set_pieces'];
-                $set->stock = $row['set_stock'];
+                $set->stock = $row['set_stock'];                if ($row['set_theme_id'] != null) {
+                    $set->themeId = $row['set_theme_id'];
+                } else {
+                    $set->themeId = 0;
+                }
             }
         }
 
@@ -69,8 +72,10 @@ class Set
                 $set->age = $row['set_age'];
                 $set->pieces = $row['set_pieces'];
                 $set->stock = $row['set_stock'];
-                if ($row['set_theme_id']) {
+                if ($row['set_theme_id'] != null) {
                     $set->themeId = $row['set_theme_id'];
+                } else {
+                    $set->themeId = 0;
                 }
                 $sets[] = $set;
             }
