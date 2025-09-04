@@ -27,7 +27,6 @@ include "Classes/themes.php";
     <main>
         <section class="content" id="contact">
             <h2>Contact Us</h2>
-            <h1> nathan is super chill </h1>
             <p>You can reach us via email at contact@example.com</p>
         </section>
     </main>
