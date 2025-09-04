@@ -1,55 +1,30 @@
 <?php
-
 //this page is for logging into the admin pages
 include "../Classes/database.php";
 include "../Classes/users.php";
-?>
-<!DOCTYPE html><html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/index.css">
-    <title>Login</title>
-</head>
-<body>
-    <!-- Navigation bar -->
-    <nav class="navbar" aria-label="Main navigation">
-        <a href="../index.php">Speel Huis</a>
-        <a href="../products.php">Products</a>
-        <a href="../contact.php">Contact</a>
-        <a href="index.php">Login</a>
-    </nav>
 
-    <form action="index.php" method="POST">
-        Username: <input type="text" name="username" required><br>
-        Password: <input type="password" name="password" required><br>
-        <input type="submit" value="Login">
-    </form>
-    <?php
+$username = null;
+$password = null;
 
-    $username = null;
-    $password = null;
-
-    if (isset($_POST["username"]) && isset($_POST["password"])) //makes a new session and cookie if the correct username and password have been entered
-    {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["username"]) && isset($_POST["password"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
 
         $gebruiker = User::findByUsernameAndPassword($username, $password);
 
         if ($gebruiker == null) {
-            echo "Wrong username or password";
+            $error = "Verkeerde gebruikersnaam of wachtwoord!";
         } else {
             $gebruiker->login();
             header("location:adminWorkerPage.php");
             exit;
         }
     }
-
-    ?>
-</body>
-</html>
+}
+?>
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 
 <head>
   <meta charset="utf-8">
@@ -69,15 +44,19 @@ include "../Classes/users.php";
           <div class="card-body">
             <h3 class="text-center mb-4">Log in</h3>
 
-            <form name="stad" method="post" action="create.php">
+            <?php if (!empty($error)): ?>
+              <div class="alert alert-danger text-center"><?php echo $error; ?></div>
+            <?php endif; ?>
+
+            <form method="POST" action="index.php">
               <div class="mb-3">
                 <label class="form-label">Gebruikersnaam</label>
-                <input type="text" class="form-control" name="naam" value="" />
+                <input type="text" class="form-control" name="username" required>
               </div>
 
               <div class="mb-3">
                 <label class="form-label">Wachtwoord</label>
-                <input type="text" class="form-control" name="ww" value="" />
+                <input type="password" class="form-control" name="password" required>
               </div>
 
               <div class="d-grid">
@@ -97,5 +76,4 @@ include "../Classes/users.php";
     crossorigin="anonymous"></script>
 
 </body>
-
 </html>
