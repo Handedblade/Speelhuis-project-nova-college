@@ -26,8 +26,13 @@ include "Classes/themes.php";
 
     <main>
         <section class="content" id="contact">
-            <h2>Contact Us</h2>
-            <p>You can reach us via email at contact@example.com</p>
+              <h1>Here is our contact information:</h1>
+            <h2> Email: </h2>
+            <p>LegoVerkopers@gmail.com</p>
+            <h2>Telefoon nummer: </h2>
+            <p>069549490490</p>
+            <h2>Bedrijf adress</h2>
+            <p>LegoStraat 99qq nummer: 2 </p>
         </section>
     </main>
 
