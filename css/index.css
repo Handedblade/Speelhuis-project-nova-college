@@ -189,4 +189,12 @@ form input[type="submit"] {
 form input[type="submit"]:hover {
     background: var(--color-accent);
 }
- 
+ .logo-container {
+    text-align: center;     
+    margin: 20px 0;       
+}
+
+.logo-container img {
+    max-width: 200px;     
+    height: auto;       
+}

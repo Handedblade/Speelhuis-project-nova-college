@@ -27,7 +27,10 @@ include "Classes/themes.php";
     </nav>
 
     <main>
-        <img src="images/lego website opdracht logo.png"> 
+      <div class="logo-container">
+        <img src="images/lego website opdracht logo.png" alt="Speel Huis Logo">
+    </div>
+
         <section class="content" id="home">
             <h1>Welcome to our Website</h1>
             <p>This is the home page. Feel free to browse our products or get in touch with us!</p>
