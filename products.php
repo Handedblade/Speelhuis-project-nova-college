@@ -26,6 +26,10 @@
            <a href="contact.php">Contact</a>
            <a href="Admin/index.php">Login</a>
        </nav>
+       <?php
+        if (isset($_GET['message'])) { ?>
+            <b id="message"><?= $_GET['message'] ?></b>
+        <?php } ?>
 
        <table border='1'>
            <thead>
