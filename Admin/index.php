@@ -62,6 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               <div class="d-grid">
                 <button type="submit" class="btn btn-primary btn-lg">Inloggen</button>
               </div>
+              <a href="../index.php">Terug naar Speel Huis</a>
+
             </form>
 
           </div>
