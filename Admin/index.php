@@ -5,21 +5,38 @@ include "../Classes/users.php";
 
 $username = null;
 $password = null;
+$error = null;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST["username"]) && isset($_POST["password"])) {
+    if (!empty($_POST["username"]) && !empty($_POST["password"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
 
         $gebruiker = User::findByUsernameAndPassword($username, $password);
 
-        if ($gebruiker == null) {
+        if ($gebruiker === null) {
             $error = "Verkeerde gebruikersnaam of wachtwoord!";
         } else {
-            $gebruiker->login();
-            header("location:adminWorkerPage.php");
-            exit;
-        }
+
+            session_start();
+            $_SESSION['user_id'] = $gebruiker->id;
+            $_SESSION['username'] = $gebruiker->username;
+            $_SESSION['role'] = $gebruiker->role;
+
+          $gebruiker->login();
+
+            if ($gebruiker->role === 'admin') {
+             header("Location: adminOwnerPage.php");
+           } elseif ($gebruiker->role === 'employee') {
+                header("Location: adminWorkerPage.php");
+                    } else {
+                      header("Location: index.php");
+                        }
+                           exit;
+
+                           }
+    } else {
+        $error = "Vul zowel gebruikersnaam als wachtwoord in!";
     }
 }
 ?>
@@ -45,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <h3 class="text-center mb-4">Log in</h3>
 
             <?php if (!empty($error)): ?>
-              <div class="alert alert-danger text-center"><?php echo $error; ?></div>
+              <div class="alert alert-danger text-center"><?php echo htmlspecialchars($error); ?></div>
             <?php endif; ?>
 
             <form method="POST" action="index.php">
@@ -63,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <button type="submit" class="btn btn-primary btn-lg">Inloggen</button>
               </div>
               <a href="../index.php">Terug naar Speel Huis</a>
-
             </form>
 
           </div>

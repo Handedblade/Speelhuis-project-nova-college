@@ -15,5 +15,7 @@ include "../Classes/sets.php";
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/styles.css">
     <title>Admin Owner Page</title>
+        <h1>Admin Owner Page</h1>  
+ <a href="insert.php">Add New Set</a>
 </head>
 </html>

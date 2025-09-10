@@ -13,7 +13,7 @@ class Set
     public int $pieces;
     public int $stock;
 
-    public static function findById($id) //finds a product and returns it if found
+    public static function findById($id)
     {
         $conn = new Database();
         $conn->start();
@@ -36,11 +36,8 @@ class Set
                 $set->price = $row['set_price'];
                 $set->age = $row['set_age'];
                 $set->pieces = $row['set_pieces'];
-                $set->stock = $row['set_stock'];                if ($row['set_theme_id'] != null) {
-                    $set->themeId = $row['set_theme_id'];
-                } else {
-                    $set->themeId = 0;
-                }
+                $set->stock = $row['set_stock'];
+                $set->themeId = $row['set_theme_id'] ?? 0;
             }
         }
 
@@ -49,7 +46,7 @@ class Set
         return $set;
     }
 
-    public static function findAll() //returns every product in the form of an array
+    public static function findAll()
     {
         $conn = new Database();
         $conn->start();
@@ -58,7 +55,6 @@ class Set
         $result = $conn->connection->query($sql);
 
         $sets = [];
-
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -72,11 +68,7 @@ class Set
                 $set->age = $row['set_age'];
                 $set->pieces = $row['set_pieces'];
                 $set->stock = $row['set_stock'];
-                if ($row['set_theme_id'] != null) {
-                    $set->themeId = $row['set_theme_id'];
-                } else {
-                    $set->themeId = 0;
-                }
+                $set->themeId = $row['set_theme_id'] ?? 0;
                 $sets[] = $set;
             }
         }
@@ -86,7 +78,72 @@ class Set
         return $sets;
     }
 
-    public function update() //updates an existing set
+    // Toegevoegde filter-methode
+    public static function filter($filters)
+    {
+        $conn = new Database();
+        $conn->start();
+
+        $sql = "SELECT * FROM sets WHERE 1=1";
+        $params = [];
+
+        if (!empty($filters['brand'])) {
+            $brandId = mysqli_real_escape_string($conn->connection, $filters['brand']);
+            $sql .= " AND set_brand_id = '$brandId'";
+        }
+        if (!empty($filters['theme'])) {
+            $themeId = mysqli_real_escape_string($conn->connection, $filters['theme']);
+            $sql .= " AND set_theme_id = '$themeId'";
+        }
+        if (!empty($filters['age'])) {
+            $age = mysqli_real_escape_string($conn->connection, $filters['age']);
+            $sql .= " AND set_age >= '$age'";
+        }
+        if (!empty($filters['pieces'])) {
+            $pieces = mysqli_real_escape_string($conn->connection, $filters['pieces']);
+            $sql .= " AND set_pieces >= '$pieces'";
+        }
+        if (!empty($filters['price'])) {
+            $price = mysqli_real_escape_string($conn->connection, $filters['price']);
+            $sql .= " AND set_price <= '$price'";
+        }
+
+        $result = $conn->connection->query($sql);
+
+        $sets = [];
+
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $set = new Set();
+                $set->id = $row['set_id'];
+                $set->name = $row['set_name'];
+                $set->description = $row['set_description'];
+                $set->brandId = $row['set_brand_id'];
+                $set->image = $row['set_image'];
+                $set->price = $row['set_price'];
+                $set->age = $row['set_age'];
+                $set->pieces = $row['set_pieces'];
+                $set->stock = $row['set_stock'];
+                $set->themeId = $row['set_theme_id'] ?? 0;
+                $sets[] = $set;
+            }
+        }
+
+        $conn->close();
+
+        return $sets;
+    }
+
+    public function save()
+    {
+        if (isset($this->id) && $this->id > 0) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
+    }
+
+    public function update()
     {
         $conn = new Database();
         $conn->start();
@@ -108,13 +165,13 @@ class Set
         SET
             set_name = '" . $name . "',
             set_description = '" . $description . "',
-            set_brandId = '" . $brandId . "',
-            set_themeId = '" . $themeId . "',
+            set_brand_id = '" . $brandId . "',
+            set_theme_id = '" . $themeId . "',
             set_image = '" . $image . "',
             set_price = '" . $price . "',
             set_age = '" . $age . "',
             set_pieces = '" . $pieces . "',
-            set_stock = '" . $stock . "',
+            set_stock = '" . $stock . "'
         WHERE
             set_id = " . $id . "
         ";
@@ -124,7 +181,7 @@ class Set
         $conn->close();
     }
 
-    public function insert() //inserts a new set
+    public function insert()
     {
         $conn = new Database();
         $conn->start();
@@ -144,8 +201,8 @@ class Set
             sets (
                 set_name,
                 set_description,
-                set_brandId,
-                set_themeId,
+                set_brand_id,
+                set_theme_id,
                 set_image,
                 set_price,
                 set_age,
@@ -161,15 +218,14 @@ class Set
             '" . $age . "',
             '" . $pieces . "',
             '" . $stock . "'
-        )"; // Kan je hier een uitleg geven Ryan??
-        //dit is gewoon de insert functie die we in eerdere projecten hebben gebruikt om een nieuw object toe te voegen aan de database
+        )";
 
         $conn->connection->query($sql);
 
         $conn->close();
     }
 
-    public function delete() //deletes an existing set
+    public function delete()
     {
         $conn = new Database();
         $conn->start();

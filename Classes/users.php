@@ -9,6 +9,36 @@ class User
     public string $username;
     public string $password;
     public string $role;
+ public string $user_role;
+
+    public static function findById($id) //hetzelfde als findByUsernameAndPassword maar dan op basis van ID
+    {
+        $conn = new Database();
+        $conn->start();
+
+        $id = mysqli_real_escape_string($conn->connection, $id);
+        $sql = "SELECT * FROM users WHERE user_id = '$id'";
+        $result = $conn->connection->query($sql);
+
+        $user = null;
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $user = new User();
+                $user->id = $row['user_id'];
+                $user->firstname = $row['user_firstname'];
+                $user->lastname = $row['user_lastname'];
+                $user->email = $row['user_email'];
+                $user->username = $row['user_username'];
+                $user->password = $row['user_password'];
+                $user->role = $row['user_role'];
+                $user->user_role = $row['user_role'];
+            }
+        }
+
+        $conn->close();
+        return $user;
+    }
 
     public static function findByUsernameAndPassword($username, $password) //this function returns a single user based on the username and password that is passed through the parameters
     {
@@ -33,6 +63,7 @@ class User
                 $user->username = $row['user_username'];
                 $user->password = $row['user_password'];
                 $user->role = $row['user_role'];
+                $user->user_role = $row['user_role'];
             }
         }
 
