@@ -1,20 +1,24 @@
 <?php
+
 include "Classes/database.php";
 include "Classes/sets.php";
 include "Classes/brands.php";
 include "Classes/themes.php";
 
-if (isset($_GET['id'])) {
-    $set = Set::findById($_GET['id']);
-    if (is_null($set)) {
-        header("location:products.php?message=product not found");
-    }
-    $brand = Brand::findById($set->brandId);
-    if ($set->themeId != 0) {
-        $theme = Theme::findById($set->themeId);
-    }
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
 } else {
-    header("location:products.php?message=product not found");
+    $id = 1;
+}
+
+$set = Set::findById($id);
+if (is_null($set)) {
+    header("location: products.php");
+}
+
+$brand = Brand::findById($set->brandId);
+if ($set->themeId != 0) {
+    $theme = Theme::findById($set->themeId);
 }
 ?>
 
@@ -22,32 +26,30 @@ if (isset($_GET['id'])) {
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo htmlspecialchars($set->name); ?></title>
+    <title><?= $set->name ?></title>
     <link rel="stylesheet" href="detail.css">
 </head>
-<body>
+<body> 
     <div class="detail-container">
         <div class="product-image">
             <?php if (!empty($set->image)): ?>
-                <img src="<?php echo htmlspecialchars($set->image); ?>" alt="<?php echo htmlspecialchars($set->name); ?>">
+                <img src="images/sets/<?= $set->image ?>" alt="<?= $set->name ?>">
             <?php endif; ?>
-        </div>
-
-        <div class="product-card">
-            <h1><?php echo htmlspecialchars($set->name); ?></h1>
-            <p class="price">&euro;<?php echo number_format($set->price, 2); ?></p>
-            <p><strong>Beschrijving:</strong> <?php echo htmlspecialchars($set->description); ?></p>
-            <p><strong>Merk:</strong> <?php echo htmlspecialchars($brand->name); ?></p>
+        </div> 
+        
+        <div class="product-info">
+            <h1><?= $set->name ?></h1> 
+            <p class="price">€<?= $set->price ?></p>
+            <p><strong>Beschrijving:</strong> <?= $set->description ?></p> 
+            <p><strong>Merk:</strong> <?= $brand->name ?></p>
             <?php if (isset($theme)): ?>
-                <p><strong>Thema:</strong> <?php echo htmlspecialchars($theme->name); ?></p>
+                <p><strong>Thema:</strong> <?= $theme->name ?></p>
             <?php endif; ?>
-            <p><strong>Leeftijd:</strong> <?php echo htmlspecialchars($set->age); ?>+</p>
-            <p><strong>Stuks:</strong> <?php echo htmlspecialchars($set->pieces); ?></p>
-            <p><strong>Op voorraad:</strong> <?php echo htmlspecialchars($set->stock); ?></p>
-
-            <div class="buttons">
-                <a href="products.php" class="btn btn-back">← Terug</a>
-            </div>
+            <p><strong>Leeftijd:</strong> <?= $set->age ?>+</p>
+            <p><strong>Stuks:</strong> <?= $set->pieces ?></p>
+            <p><strong>Voorraad:</strong> <?= $set->stock ?></p>
+            
+            <a href="products.php">Terug naar overzicht</a>
         </div>
     </div>
 </body>
