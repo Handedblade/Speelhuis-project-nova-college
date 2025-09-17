@@ -11,10 +11,10 @@ include "../Classes/database.php";
 include "../Classes/users.php";
 include "../Classes/sessions.php";
 
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit;
+$session = Session::findActiveSession();
+if ($session == null) {
+  header("location:index.php");
+  exit;
 }
 
 // Haal de set op via ID uit de URL
