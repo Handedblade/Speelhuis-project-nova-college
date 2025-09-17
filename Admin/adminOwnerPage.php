@@ -21,7 +21,7 @@ include "../Classes/sets.php";
     <h1>Admin Owner Page</h1>  
     <a href="insert.php">Add New Set</a>
 
-    <h2>Delete a Set</h2>
+      <h2>Delete a Set</h2>
     <form action="delete.php" method="post">
         <label for="set_id">Enter Set ID to Delete:</label>
         <input type="number" name="set_id" id="set_id" required>
