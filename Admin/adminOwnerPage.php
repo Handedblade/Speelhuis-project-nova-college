@@ -20,21 +20,26 @@ if ($user->role != "admin") {
     exit;
 }
 
-$sets = Set::findAll();
-
+$sets = Set::findAll();          
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="../css/adminOwner.css">
     <title>Admin Owner Page</title>
 </head>
 
 <body>
+
+ <nav class="navbar" aria-label="Main navigation">
+        <a href="../index.php">Speel Huis</a>
+        <a href="../products.php">Products</a>
+        <a href="../contact.php">Contact</a>
+    </nav>
+
     <h1>Admin Owner Page</h1>
-    <a href="insert.php">Add New Set</a></br>
     <?php
     if (isset($_GET["message"])) {
         echo $_GET["message"];
@@ -45,6 +50,10 @@ $sets = Set::findAll();
             <th>Products</th>
             <th>Name</th>
             <th>Price</th>
+            <th>Edit</th>
+             <th>Delete </th>
+
+
             <th></th>
         </thead>
         <tbody>
@@ -64,6 +73,11 @@ $sets = Set::findAll();
             <?php } ?>
         </tbody>
     </table>
+    <a href="insert.php" class="add-btn">➕ Add New Set</a>
+        <a href="prullenbak.php" class="add-btn">➕ prullenbak</a>
+
+
+
 </body>
 
 </html>

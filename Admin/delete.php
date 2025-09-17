@@ -39,3 +39,22 @@ header("Location: adminOwnerPage.php?message=delete succesfull");
 exit;
 
 ?>
+
+
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Deleten</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <h1>Set Deleten</h1>
+    <form method="POST">
+        <label>Naam set:</label>
+        <input type="text" name="set_name" value="<?php echo htmlspecialchars($set->name); ?>" required><br>
+        <input type="submit" value="Verwijderen">
+    </form>
+</body>
+</html>
