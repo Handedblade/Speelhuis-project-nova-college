@@ -34,7 +34,10 @@ if (!$set) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $set->name = $_POST['set_name'] ?? $set->name;
     $set->description = $_POST['set_description'] ?? $set->description;
-    $set->save(); // Zorg dat je een save-methode hebt
+    $set->price = $_POST['set_price'] ?? $set->price;
+    $set->brandId = $_POST['set_brand_id'] ?? $set->brandId;
+    $set->themeId = $_POST['set_age'] ?? $set->age;
+    $set->update(); // Zorg dat je een save-methode hebt
 
     $user = User::findById($_SESSION['user_id']);
     if ($user->user_role === 'owner') {
@@ -60,6 +63,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="text" name="set_name" value="<?php echo htmlspecialchars($set->name); ?>" required><br>
         <label>Beschrijving:</label>
         <textarea name="set_description" required><?php echo htmlspecialchars($set->description); ?></textarea><br>
+        <label> Prijs set:</label>
+        <input type="number" name="set_price" value="<?php echo htmlspecialchars($set->price); ?>" required><br>
+        <label> Set merk:</label>
+        <input type="text" name="set_brand_id" value="<?php echo htmlspecialchars($set->brandId); ?>">
+        <label> Set age:</label> 
+        <input type="text" name="set_age" value="<?php echo htmlspecialchars($set->age); ?>">
         <input type="submit" value="Opslaan">
     </form>
 </body>
