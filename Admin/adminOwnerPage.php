@@ -1,6 +1,7 @@
 <?php
 
-//this page should only be accessed by logged in users with the "admin" role
+
+// This page should only be accessed by logged in users with the "admin" role
 include "../Classes/users.php";
 include "../Classes/database.php";
 include "../Classes/brands.php";
@@ -15,20 +16,16 @@ include "../Classes/sets.php";
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/styles.css">
     <title>Admin Owner Page</title>
-        <h1>Admin Owner Page</h1>  
- <a href="insert.php">Add New Set</a>
+</head>
+<body>
+    <h1>Admin Owner Page</h1>  
+    <a href="insert.php">Add New Set</a>
 
-     <h2>Delete a Set</h2>
+    <h2>Delete a Set</h2>
     <form action="delete.php" method="post">
-        <label for="set_id">Select Set ID to Delete:</label>
-        <select name="set_id" id="set_id" required>
-            <?php foreach ($sets as $set): ?>
-                <option value="<?php echo htmlspecialchars($set['id']); ?>">
-                    <?php echo htmlspecialchars($set['id']); ?> - <?php echo htmlspecialchars($set['name']); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+        <label for="set_id">Enter Set ID to Delete:</label>
+        <input type="number" name="set_id" id="set_id" required>
         <button type="submit">Delete</button>
     </form>
-</head>
+</body>
 </html>
