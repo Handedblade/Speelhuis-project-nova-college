@@ -17,5 +17,18 @@ include "../Classes/sets.php";
     <title>Admin Owner Page</title>
         <h1>Admin Owner Page</h1>  
  <a href="insert.php">Add New Set</a>
+
+     <h2>Delete a Set</h2>
+    <form action="delete.php" method="post">
+        <label for="set_id">Select Set ID to Delete:</label>
+        <select name="set_id" id="set_id" required>
+            <?php foreach ($sets as $set): ?>
+                <option value="<?php echo htmlspecialchars($set['id']); ?>">
+                    <?php echo htmlspecialchars($set['id']); ?> - <?php echo htmlspecialchars($set['name']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit">Delete</button>
+    </form>
 </head>
 </html>
