@@ -19,7 +19,7 @@ if ($user->user_role !== 'owner' && $user->user_role !== 'admin') {
     exit;
 }
 // Haal de set op via ID uit de URL
-$set_id = $_POST['id'] ?? null;
+$set_id = $_GET['set_id'] ?? null;
 if (!$set_id) {
     echo "Geen set geselecteerd.";
     exit;
