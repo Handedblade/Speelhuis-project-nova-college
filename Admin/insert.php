@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')  //vanuit het sets.php formulier
 <head>
     <meta charset="UTF-8">
     <title>Nieuwe set toevoegen</title>
-    <link rel="stylesheet" href="../css/insert/.css">
+    <link rel="stylesheet" href="../css/insert.css">
 </head>
 <body>
     <main>
