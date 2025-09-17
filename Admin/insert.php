@@ -52,44 +52,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')  //vanuit het sets.php formulier
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Set toevoegen</title>
+    <title>Nieuwe set toevoegen</title>
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <h1>Nieuwe set toevoegen</h1>
-    <form method="POST">
-        <label>Naam set:</label>
-        <input type="text" name="set_name" required><br><br>
-        
-        <label>Beschrijving:</label>
-        <textarea name="set_description" required></textarea><br><br>
-        
-        <label>Brand ID:</label>
-        <input type="number" name="set_brand_id" required><br><br>
-        
-        <label>Theme ID:</label>
-        <input type="number" name="set_theme_id"><br><br>
-        
-        <label>Afbeelding URL:</label>
-        <input type="text" name="set_image"><br><br>
-        
-        <label>Prijs:</label>
-        <input type="number" step="0.01" name="set_price" required><br><br>
-        
-        <label>Leeftijd:</label>
-        <input type="number" name="set_age" required><br><br>
-        
-        <label>Aantal stukken:</label>
-        <input type="number" name="set_pieces" required><br><br>
-        
-        <label>Voorraad:</label>
-        <input type="number" name="set_stock" required><br><br>
-        
-        <input type="submit" value="Set toevoegen">
+    <main>
+        <h1>Nieuwe set toevoegen</h1>
+
+        <form method="POST" action="">
+            <fieldset>
+                <legend>Setgegevens</legend>
+
+                <label for="set_name">Naam set:</label>
+                <input type="text" id="set_name" name="set_name" required><br><br>
+
+                <label for="set_description">Beschrijving:</label>
+                <textarea id="set_description" name="set_description" required></textarea><br><br>
+
+                <label for="set_brand_id">Brand ID:</label>
+                <input type="number" id="set_brand_id" name="set_brand_id" required><br><br>
+
+                <label for="set_theme_id">Theme ID:</label>
+                <input type="number" id="set_theme_id" name="set_theme_id"><br><br>
+
+                <label for="set_image">Afbeelding URL:</label>
+                <input type="url" id="set_image" name="set_image"><br><br>
+
+                <label for="set_price">Prijs (€):</label>
+                <input type="number" id="set_price" name="set_price" step="0.01" required><br><br>
+
+                <label for="set_age">Leeftijd:</label>
+                <input type="number" id="set_age" name="set_age" required><br><br>
+
+                <label for="set_pieces">Aantal stukken:</label>
+                <input type="number" id="set_pieces" name="set_pieces" required><br><br>
+
+                <label for="set_stock">Voorraad:</label>
+                <input type="number" id="set_stock" name="set_stock" required><br><br>
+            </fieldset>
+
+            <input type="submit" value="Set toevoegen" class="submit-button">
+        </form>
+
         <br>
-    <a href="<?php echo ($user->user_role === 'owner') ? 'adminOwnerPage.php' : 'adminWorkerPage.php'; ?>">Terug naar admin pagina</a>
-    </form>
-    
-    
+
+        <?php if (isset($user) && property_exists($user, 'user_role')): ?>
+            <a href="<?= $user->user_role === 'owner' ? 'adminOwnerPage.php' : 'adminWorkerPage.php'; ?>">Terug naar admin pagina</a>
+        <?php endif; ?>
+    </main>
 </body>
 </html>
