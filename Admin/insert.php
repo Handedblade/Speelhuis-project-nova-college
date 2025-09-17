@@ -61,9 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')  //vanuit het sets.php formulier
 
         <form method="POST" action="">
             <fieldset>
-                <legend>Setgegevens</legend>
-
-                <label for="set_name">Naam set:</label>
+            
+               <label for="set_name">Naam set:</label>
                 <input type="text" id="set_name" name="set_name" required><br><br>
 
                 <label for="set_description">Beschrijving:</label>
