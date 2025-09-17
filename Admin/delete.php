@@ -6,28 +6,29 @@ include "../Classes/sets.php";
 include "../Classes/database.php";
 include "../Classes/users.php";
 include "../Classes/sessions.php"; 
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit;
+
+$session = Session::findActiveSession();
+if ($session == null) {
+  header("location:index.php");
+  exit;
 }
 
 // Controleer of gebruiker admin/owner is
-$user = User::findById($_SESSION['user_id']);
-if ($user->user_role !== 'owner' && $user->user_role !== 'admin') {
-    echo "Geen toegang.";
+$user = User::findById($session->userId);
+if ($user->role != "admin") {
+    header("location: adminWorkerPage.php?message=permission denied");
     exit;
 }
 // Haal de set op via ID uit de URL
-$set_id = $_GET['id'] ?? null;
-if (!$set_id) {
-    echo "Geen set geselecteerd.";
+$setId = $_GET['id'] ?? null;
+if (!$setId) {
+    header("location: adminOwnerPage.php?message=no set id given");
     exit;
 }
 
-$set = Set::findById($set_id);
+$set = Set::findById($setId);
 if (!$set) {
-    echo "Set niet gevonden.";
+    header("location: adminOwnerPage.php?message=set not found");
     exit;
 }
 

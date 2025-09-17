@@ -9,6 +9,19 @@ include "../Classes/sessions.php";
 include "../Classes/themes.php";
 include "../Classes/sets.php";
 
+$session = Session::findActiveSession();
+if ($session == null) {
+  header("location:index.php");
+  exit;
+}
+$user = User::findById($session->userId);
+if ($user->role != "admin") {
+    header("Location:adminWorkerPage.php?message=permission denied");
+    exit;
+}
+
+$sets = Set::findAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,12 +33,28 @@ include "../Classes/sets.php";
 <body>
     <h1>Admin Owner Page</h1>  
     <a href="insert.php">Add New Set</a>
+           <table border='1'>
+           <thead>
+               <th>Products</th>
+               <th>Name</th>
+               <th>Price</th>
+               <th></th>
+           </thead>
+           <tbody>
+               <?php
 
-      <h2>Delete a Set</h2>
-    <form action="delete.php" method="post">
-        <label for="set_id">Enter Set ID to Delete:</label>
-        <input type="number" name="set_id" id="set_id" required>
-        <button type="submit">Delete</button>
-    </form>
+                foreach ($sets as $set) { 
+                    $brand = Brand::findById($set->brandId)
+                    ?>
+                   <tr>
+                       <td><img src="images/logos/<?= $brand->logo; ?>" width="75px"></td>
+                       <td><?= $set->name ?></td>
+                       <td><?= $set->price ?></td>
+                       <td><a href="edit.php?id=<?= $set->id ?>">Edit Product</a></td>
+                       <td><a href="delete.php?id=<?= $set->id ?>">delete Product</a></td>
+                   </tr>
+               <?php } ?>
+           </tbody>
+       </table>
 </body>
 </html>
