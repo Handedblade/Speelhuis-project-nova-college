@@ -29,30 +29,53 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
  
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #357abd 100%);
+    padding: 1.2rem 2rem;
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 3rem;
+}
+
 .navbar a {
     position: relative;
     color: var(--color-white);
     text-decoration: none;
-    margin-left: 2rem;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
     transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
- 
+
 .navbar a::after {
     content: "";
     position: absolute;
-    left: 0;
-    bottom: -4px;
+    left: 50%;
+    bottom: -6px;
     width: 0%;
-    height: 2px;
+    height: 3px;
     background: var(--color-accent);
-    transition: width 0.3s ease;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
 }
- 
-.navbar a:hover::after,
-.navbar a:focus::after {
-    width: 100%;
+
+.navbar a:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+}
+
+.navbar a:hover::after {
+    width: 80%;
 }
  
 main {
