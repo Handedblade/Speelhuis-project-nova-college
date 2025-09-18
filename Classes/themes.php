@@ -33,22 +33,22 @@ class Theme
     $conn = new Database();
     $conn->start();
 
-    $sql = "SELECT * FROM brands";
+    $sql = "SELECT * FROM themes";
     $result = $conn->connection->query($sql);
 
     $brands = [];
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $brand = new Brand();
-            $brand->id = $row['brand_id'];
-            $brand->name = $row['brand_name'];
-            $brand->logo = $row['brand_logo'] ?? '';
-            $brands[] = $brand;
+            $theme = new Theme();
+            $theme->id = $row['theme_id'];
+            $theme->name = $row['theme_name'];
+            $theme->logo = $row['theme_logo'] ?? '';
+            $themes[] = $theme;
         }
     }
 
     $conn->close();
-    return $brands;
+    return $themes;
 }
 }
 
