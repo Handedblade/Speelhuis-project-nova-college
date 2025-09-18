@@ -42,7 +42,6 @@ class Theme
             $theme = new Theme();
             $theme->id = $row['theme_id'];
             $theme->name = $row['theme_name'];
-            $theme->logo = $row['theme_logo'] ?? '';
             $themes[] = $theme;
         }
     }
