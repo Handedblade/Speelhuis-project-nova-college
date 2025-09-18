@@ -13,6 +13,10 @@ $filters = [
 ];
 
 $sets = Set::filter($filters);
+$pageOffset = 0; //0 is page one, the pageoffset is used to calculate what sets need to be gotten on what page
+if (isset($_GET['page'])) {
+    $pageOffset = $_GET['page'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -86,26 +90,39 @@ $sets = Set::filter($filters);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($sets as $set): 
-                        $brand = Brand::findById($set->brandId); ?>
-                        <tr>
-                            <td>
-                                <?php if (!empty($brand->logo)): ?>
-                                    <img src="images/logos/<?= $brand->logo; ?>" width="75px">
-                                <?php else: ?>
-                                    <?= $brand->name ?>
-                                <?php endif; ?>
-                            </td>
-                            <td><?= $set->name ?></td>
-                            <td>&euro;<?= number_format($set->price, 2) ?></td>
-                            <td><a href="detail.php?id=<?= $set->id ?>">Bekijk product</a></td>
-                        </tr>
-                    <?php endforeach; ?>
+                    <?php
+                    $pageOffset *= 5;
+                    $amountSets = count($sets);
+
+                    for ($i = $pageOffset; $i < $pageOffset + 5; $i++) {
+                        if ($i < $amountSets) {
+                            $brand = Brand::findById($sets[$i]->brandId);
+                    ?>
+                            <tr>
+                                <td><?= $brand->name ?></td>
+                                <td><?= $sets[$i]->name ?></td>
+                                <td><?= $sets[$i]?->price ?></td>
+                                <td><a href="detail.php?id=<?= $sets[$i]->id; ?>">Bekijk Product</a></td>
+                            </tr>
+                    <?php }
+                    } ?>
                 </tbody>
             </table>
+            <?php
+            $pageOffset /= 5;
+            if ($pageOffset > 0) { ?>
+                <a href="products.php?page=<?= $pageOffset - 1 ?>">
+                    < go to page <?= $pageOffset ?></a>
+                    <?php } ?>
+                    ~|<?= $pageOffset + 1 ?>|~
+                    <?php
+                    if ($amountSets > $pageOffset * 5 + 5) { ?>
+                        <a href="products.php?page=<?= $pageOffset + 1 ?>">go to page <?= $pageOffset + 2 ?> > </a>
+                    <?php } ?>
         </main>
 
     </div> <!-- einde .page-container -->
 
 </body>
+
 </html>
