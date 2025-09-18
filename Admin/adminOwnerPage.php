@@ -52,9 +52,6 @@ $sets = Set::findAll();
             <th>Price</th>
             <th>Edit</th>
              <th>Delete </th>
-
-
-            <th></th>
         </thead>
         <tbody>
             <?php
