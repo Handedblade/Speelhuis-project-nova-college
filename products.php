@@ -99,7 +99,7 @@ if (isset($_GET['page'])) {
                             $brand = Brand::findById($sets[$i]->brandId);
                     ?>
                             <tr>
-                                <td><?= $brand->name ?></td>
+                                <td><img src="images/logos/<?= $brand->logo; ?>" width="75px"></td>
                                 <td><?= $sets[$i]->name ?></td>
                                 <td><?= $sets[$i]?->price ?></td>
                                 <td><a href="detail.php?id=<?= $sets[$i]->id; ?>">Bekijk Product</a></td>
