@@ -4,6 +4,7 @@ class Theme
 {
     public int $id;
     public string $name;
+    public string $logo;
 
     public static function findById($id) //finds a product's theme and returns it if found
     {
