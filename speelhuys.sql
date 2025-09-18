@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `sets` (
   `set_age` int NOT NULL,
   `set_pieces` int NOT NULL,
   `set_stock` int NOT NULL,
+  `set_deleted` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`set_id`),
   KEY `set_brand_id` (`set_brand_id`),
   KEY `set_theme_id` (`set_theme_id`)
