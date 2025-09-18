@@ -5,7 +5,7 @@ include "../Classes/sets.php";
 include "../Classes/brands.php";
 include "../Classes/themes.php";
 
-$deletedSets = Set::findDeleted(); // ALTER TABLE sets ADD COLUMN deleted TINYINT(1) NOT NULL DEFAULT 0; dit toegevoegen in mijn SQL om de kolom toe te voegen doe dat ook in je SQL :)))))
+$deletedSets = Set::findDeleted(); // ALTER TABLE sets ADD COLUMN set_deleted TINYINT(1) NOT NULL DEFAULT 0; dit toegevoegen in mijn SQL om de kolom toe te voegen doe dat ook in je SQL :)))))
 
 
 ?>
