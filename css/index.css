@@ -198,3 +198,64 @@ form input[type="submit"]:hover {
     max-width: 200px;     
     height: auto;       
 }
+
+.page-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 2rem auto;
+    gap: 2rem;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-primary);
+}
+
+.filter-group {
+    margin-bottom: 1.5rem;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.sidebar button:hover {
+    background: var(--color-accent);
+}
+
+/* Producten rechts */
+.product-list {
+    flex: 1;
+}

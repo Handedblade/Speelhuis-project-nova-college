@@ -32,9 +32,7 @@ if (!$set) {
     exit;
 }
 
-// Verwijder de set
-$set->delete(); // Zorg dat je een delete-methode hebt in je Set-class
-
+$set->delete(); 
 header("Location: adminOwnerPage.php?message=delete succesfull");
 exit;
 
