@@ -51,7 +51,7 @@ class Set
         $conn = new Database();
         $conn->start();
 
-        $result = $conn->connection->query("SELECT * FROM sets WHERE deleted = 0");
+        $result = $conn->connection->query("SELECT * FROM sets WHERE set_deleted = 0");
         $sql = "SELECT * FROM sets WHERE deleted = 0";
 
         $sets = [];
@@ -82,7 +82,7 @@ class Set
         $conn = new Database();
         $conn->start();
 
-        $result = $conn->connection->query("SELECT * FROM sets WHERE deleted = 1");
+        $result = $conn->connection->query("SELECT * FROM sets WHERE set_deleted = 1");
 
         $sets = [];
 
@@ -114,7 +114,7 @@ public function restore()
 
     $id = mysqli_real_escape_string($conn->connection, $this->id);
 
-    $sql = "UPDATE sets SET deleted = 0 WHERE set_id = $id";
+    $sql = "UPDATE sets SET set_deleted = 0 WHERE set_id = $id";
     $conn->connection->query($sql);
 
     $conn->close();
@@ -275,7 +275,7 @@ public function delete()
 
     $id = mysqli_real_escape_string($conn->connection, $this->id);
 
-    $sql = "UPDATE sets SET deleted = 1 WHERE set_id = $id";
+    $sql = "UPDATE sets SET set_deleted = 1 WHERE set_id = $id";
     $conn->connection->query($sql);
 
     $conn->close();
