@@ -27,7 +27,7 @@ if ($set->themeId != 0) {
 <head>
     <meta charset="UTF-8">
     <title><?= $set->name ?></title>
-    <link rel="stylesheet" href="detail.css">
+    <link rel="stylesheet" href="css/detail.css">
 </head>
 <body> 
     <div class="detail-container">
