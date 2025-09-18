@@ -4,7 +4,6 @@ class Theme
 {
     public int $id;
     public string $name;
-    public string $logo;
 
     public static function findById($id) //finds a product's theme and returns it if found
     {
@@ -43,7 +42,6 @@ class Theme
             $theme = new Theme();
             $theme->id = $row['theme_id'];
             $theme->name = $row['theme_name'];
-            $theme->logo = $row['theme_logo'] ?? '';
             $themes[] = $theme;
         }
     }
